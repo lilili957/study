@@ -2,10 +2,7 @@ package com.lilili.thread;
 
 import org.junit.Test;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * @Author LiYuan
@@ -29,6 +26,9 @@ public class ExecutorServiceStudy {
             System.out.println("submit finish");
         }
         executorService.shutdown();
+//        executorService.execute(() -> {
+//            System.out.println(Thread.currentThread().getName());
+//        });
     }
 
     //使用submit方法提交活的返回值， 就是使用Callable接口
@@ -50,5 +50,47 @@ public class ExecutorServiceStudy {
             System.out.println("Future<Object>: " + submit.get());
         }
         executorService.shutdown();
+    }
+
+    //CountDownLatch
+    @Test
+    public void testCountDownLatch() throws InterruptedException {
+        Thread.currentThread().setName("主线程");
+
+        CountDownLatch countDownLatch = new CountDownLatch(10);
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        for (int i = 0 ; i < 10; i++) {
+            executorService.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + "...");
+                countDownLatch.countDown();
+            });
+        }
+        countDownLatch.await();
+        System.out.println(Thread.currentThread().getName());
+    }
+
+    //CyclicBarrier
+    @Test
+    public void testCyclicBarrier() throws BrokenBarrierException, InterruptedException {
+        Thread.currentThread().setName("主线程");
+
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        for (int i = 0 ; i < 10; i++) {
+            executorService.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + "...");
+                try {
+                    cyclicBarrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        cyclicBarrier.await();
+        System.out.println(Thread.currentThread().getName());
     }
 }

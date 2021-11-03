@@ -289,6 +289,17 @@ public class StreamTest {
         Map<Integer, Person> m1 = personList.stream().collect(Collectors.toMap(Person::getAge, v -> v, (k1, k2) -> k1));
         System.out.println("toMap后的map:" + m1);
     }
+
+    @Test
+    public void testCount() {
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person("Tom",7000,25,"male","安徽"));
+        personList.add(new Person("Jack",8000,30,"female","北京"));
+        personList.add(new Person("Lucy",9000,40,"male","上海"));
+        personList.add(new Person("Airs",10000,40,"female","深圳"));
+        Stream<Person> personStream = personList.stream().filter(person -> person.getSalary() >= 9000);
+        personList.stream().filter(person -> person.getSalary() >= 9000).forEach(x -> System.out.println(x));
+    }
 }
 
 class Person {
