@@ -26,4 +26,21 @@ public class AssertTest {
     public void test01() {
         Assert.assertTrue("执行失败", true);
     }
+
+    /**
+     * 2021-11-17
+     */
+    @Test
+    public void test02() {
+        int n = 2;
+        assert n > 1 : "失败";
+        System.out.println("assert通过");
+    }
+
+    /**
+     * 2021-11-18
+     */
+    @Test
+    public void test03() {
+    }
 }

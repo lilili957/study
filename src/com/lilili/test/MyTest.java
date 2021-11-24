@@ -109,4 +109,13 @@ public class MyTest {
 //        System.out.println(bigDecimal);
 
     }
+
+    @Test
+    public void test09() {
+        for (int i = 0; i <= 3000; i ++) {
+            for (int j = 0; j <= 3000; j++) {
+                System.out.println(j);
+            }
+        }
+    }
 }
