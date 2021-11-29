@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<select class='form-control' placeholder='渠道名称' name='channelName'
+        id='channelName'
+        data-bv-notempty='true' data-bv-notempty-message='渠道名称不能为空'>
+</select>
+
+<script>
+    init()
+
+    function init() {
+
+
+        var res = [{
+            id: 1,
+            name: "测试1"
+        },
+            {
+                id: 2,
+                name: "测试2"
+            }]
+        var option = "<option value=''>请选择渠道</option>";
+        for (var i = 0; i < res.length; i++) {
+            option = option + "<option value='" + res[i].id + "'>" + res[i].name + "</option>";
+        }
+        $("#channelName").html(option);
+    }
+</script>
+</body>
+</html>

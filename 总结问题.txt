@@ -1,0 +1,50 @@
+1.新加页面后404错误，需要先给项目用maven打包（package）一下。
+
+2.mybatis 中的 if test  Integer != '' ，会将0作为空串处理
+
+3.mabtis的@Options(useGeneratedKeys = true, keyProperty = "id")的属性
+  在插入之后拿到数据库的自动生成的主键id填充到指定实体类属性(id)中
+	
+4.ajax的get请求会在url上带上时间戳， 加上cache:true属性后解决
+
+5.项目中新加js文件后sources中不显示， maven clean 之后重新package一下
+
+6.页面的选择框追加完之后，写上form.render，layui的封装。
+
+7.当mysql的sql_mode是only_full_group_by的时候，在不使用group by的情况下select语句后如果有使用聚合函数的字段，那么所有字段都应该使用聚合函数。
+如果使用group by的情况下，group by的字段在select中可以不使用聚合函数。
+
+8.ajax请求时使用同步会很卡， async: false
+
+9.maven本地仓库依赖包存在，项目中仍然报错not found，clean、reload后正常
+
+10.nacos的默认命名空间(namespace)是public
+
+11.在使用nacos作为注册中心和配置中心的时候，依赖的版本需要注意
+
+12.alter table `tablename` AUTO_INCREMENT=10000
+
+13.datasource的filter为wall， &allowMultiQueries=true无效
+
+14.静态方法中使用到了泛型， 返回值为T， 那么他的返回值之前要声明 <T> 不然会编译不通过
+
+15.在使用MybatiPlus的时候报SqlSessionFactoryBean的错(书签）
+	方法一
+	把mybatis的SqlSessionFactoryBean替换成mybatis-plus的MybatisSqlSessionFactoryBean
+
+	方法二
+	去掉项目中sqlSessionFactory。这样mybatis-plus就会自动帮我们注入sqlSessionFactory
+	
+16.@autowird静态变量要使用set方法注入
+
+17.@EnableTransactionManagement 开启事务管理， @Transactional 为当前方法开启事务， 常用在Service上， 如果方法中try catch了异常， 那么必须抛出异常， 不然不会回滚
+
+18.使用mybatis的saveBatch插入三千条记录， 发现很慢， 它还是一条一条的插入。
+
+MySQL的JDBC连接的url中要加rewriteBatchedStatements参数，并保证5.1.13以上版本的驱动，才能实现高性能的批量插入。
+MySQL JDBC驱动在默认情况下会无视executeBatch()语句，把我们期望批量执行的一组sql语句拆散，一条一条地发给MySQL数据库，批量插入实际上是单条插入，直接造成较低的性能。
+只有把rewriteBatchedStatements参数置为true, 驱动才会帮你批量执行SQL
+另外这个选项对INSERT/UPDATE/DELETE都有效
+
+
+19.如果方法返回值是数组， 返回值为空的时候， 应该返回空数组， 而不是null
