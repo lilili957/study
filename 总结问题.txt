@@ -48,3 +48,7 @@ MySQL JDBC驱动在默认情况下会无视executeBatch()语句，把我们期�
 
 
 19.如果方法返回值是数组， 返回值为空的时候， 应该返回空数组， 而不是null
+
+20.浏览器和linux中的是斜杠"/"，windows文件夹的是反斜杠"\"。
+
+21.Objects.requireNonNull方法来检查空指针。
