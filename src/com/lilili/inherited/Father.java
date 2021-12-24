@@ -10,4 +10,8 @@ public class Father {
     public Father(String name) {
         this.name = name;
     }
+
+    public void showName() {
+        System.out.println("Father: " + name);
+    }
 }

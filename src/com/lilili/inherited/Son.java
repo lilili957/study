@@ -8,4 +8,9 @@ public class Son extends Father {
     public Son(String name) {
         super(name);
     }
+
+    @Override
+    public void showName() {
+        System.out.println("Son: SonName");
+    }
 }
