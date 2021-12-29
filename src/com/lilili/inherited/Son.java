@@ -13,4 +13,9 @@ public class Son extends Father {
     public void showName() {
         System.out.println("Son: SonName");
     }
+
+
+    public static void staticMethod(){
+        System.out.println("son的静态方法");
+    }
 }

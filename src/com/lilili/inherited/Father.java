@@ -14,4 +14,8 @@ public class Father {
     public void showName() {
         System.out.println("Father: " + name);
     }
+
+    public static void staticMethod() {
+        System.out.println("staticMethod...");
+    }
 }
