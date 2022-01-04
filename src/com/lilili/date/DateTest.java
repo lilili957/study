@@ -2,8 +2,10 @@ package com.lilili.date;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @Author LiYuan
@@ -33,5 +35,18 @@ public class DateTest {
         c.add(Calendar.MONTH, -1);
         int actualMaximum = c.getActualMaximum(Calendar.DAY_OF_MONTH);
         System.out.println("本月的天数" + actualMaximum);
+    }
+
+    /**
+     * 测试大写YYYY和小写yyyy的区别
+     * YYYY：跨年的周会将年份算成下一年
+     */
+    @Test
+    public void testUpCase() {
+        Date today = Calendar.getInstance().getTime();
+        System.out.println(today);
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String formatToday = format.format(today);
+        System.out.println(formatToday);
     }
 }
